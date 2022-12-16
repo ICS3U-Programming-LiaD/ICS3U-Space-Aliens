@@ -12,16 +12,25 @@ def game_scene():
 
     # imported an image and put it into a variable
     image_bank_background = stage.Bank.from_bmp16("space_aliens_background.bmp")
+    image_bank_sprites = stage.Bank.from_bmp16("space_aliens.bmp")
     # grid of an image background
     background = stage.Grid(image_bank_background, 10, 8)
+
+    bird = stage.Sprite(image_bank_sprites, 4, 75, 66)
+
     # The display that will show up and refreshing it with 60 hertz
     game = stage.Stage(ugame.display, 60)
-    game.layers = [background]
+    game.layers = [bird] + [background]
     game.render_block()
 
-    print("Dogs vs Cats")
-
     while True:
+        # get user input i.e buttons click
+
+        # Update game Logic
+
+        # redraw Bird
+        game.render_sprites([bird])
+        game.tick()
 
         pass
 
