@@ -7,6 +7,7 @@
 # imported some libraries
 import ugame
 import stage
+import constants
 
 
 def game_scene():
@@ -16,34 +17,59 @@ def game_scene():
     image_bank_sprites = stage.Bank.from_bmp16("space_aliens.bmp")
 
     # grid of an image background
-    background = stage.Grid(image_bank_background, 10, 8)
+    background = stage.Grid(
+        image_bank_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y
+    )
 
     bird = stage.Sprite(image_bank_sprites, 4, 75, 66)
 
     # The display that will show up and refreshing it with 60 hertz
-    game = stage.Stage(ugame.display, 60)
+    game = stage.Stage(ugame.display, constants.FPS)
     game.layers = [bird] + [background]
     game.render_block()
 
     while True:
         # get user input i.e buttons click
         keys = ugame.buttons.get_pressed()
-        if keys and ugame.K_K:
-            print("A")
-        if keys and ugame.K_O:
-            print("B")
-        if keys and ugame.K_START:
-            print("Start")
-        if keys and ugame.K_SELECT:
-            print("Select")
-        if keys and ugame.K_RIGHT:
-            bird.move(bird.x + 1, bird.y)
-        if keys and ugame.K_LEFT:
-            bird.move(bird.x - 1, bird.y)
-        if keys and ugame.K_UP:
-            bird.move(bird.x, bird.y - 1)
-        if keys and ugame.K_DOWN:
-            bird.move(bird.x, bird.y + 1)
+        if keys & ugame.K_X:
+            pass
+        if keys & ugame.K_O:
+            pass
+        if keys & ugame.K_START:
+            pass
+        if keys & ugame.K_SELECT:
+            pass
+
+        if keys & ugame.K_RIGHT:
+            # moves the sprite to the right
+            if bird.x <= constants.SCREEN_X - 16:
+                bird.move(bird.x + 1, bird.y)
+            # makes sure the bird doesn't go off the right side of the screen
+            else:
+                bird.move(constants.SCREEN_X - constants.SPRITE_SIZE, bird.y)
+        if keys & ugame.K_LEFT:
+            # moves the sprite to the left
+            if bird.x >= 0:
+                bird.move(bird.x - 1, bird.y)
+            # keep it at the 0 mark
+            else:
+                bird.move(0, bird.y)
+
+        if keys & ugame.K_UP:
+            #  moves the sprite up
+            if bird.y >= 0:
+                bird.move(bird.x, bird.y - 1)
+            # Keeps the sprite at the 0 mark
+            else:
+                bird.move(bird.x, 0)
+
+        if keys & ugame.K_DOWN:
+            # moves the sprite down
+            if bird.y <= constants.SCREEN_Y - 16:
+                bird.move(bird.x, bird.y + 1)
+            # keep the sprite from going past the bottom
+            else:
+                bird.move(bird.x, constants.SCREEN_Y - constants.SPRITE_SIZE)
 
         # Update game Logic
 
