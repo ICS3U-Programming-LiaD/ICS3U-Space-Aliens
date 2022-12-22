@@ -5,7 +5,7 @@
 # This is the constants file for the Space Aliens like game
 
 # Screen size is 160 x 128
-SCREEN_X = 160 
+SCREEN_X = 160
 SCREEN_Y = 128
 
 SCREEN_GRID_X = 10
@@ -22,5 +22,5 @@ button_state = {
     # Only state where we want sound to happen
     "button_just_pressed": "just pressed",
     "button_still_pressed": "still_pressed",
-    "button_released": "released" 
-    }
+    "button_released": "released",
+}
