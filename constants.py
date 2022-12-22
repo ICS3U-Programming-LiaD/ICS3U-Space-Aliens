@@ -15,3 +15,12 @@ SCREEN_GRID_Y = 8
 SPRITE_SIZE = 16
 FPS = 60
 SPRITE_MOVEMENT_SPEED = 1
+
+# States of the Button
+button_state = {
+    "button up": "up",
+    # Only state where we want sound to happen
+    "button_just_pressed": "just pressed",
+    "button_still_pressed": "still_pressed",
+    "button_released": "released" 
+    }

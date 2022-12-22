@@ -21,24 +21,59 @@ def game_scene():
         image_bank_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y
     )
 
+    # Adding in the Sprites
     bird = stage.Sprite(image_bank_sprites, 4, 75, 66)
+    cloud = stage.Sprite(
+        image_bank_sprites,
+        9,
+        int(constants.SCREEN_X / 2 - constants.SPRITE_SIZE / 2),
+        16,
+    )
+
+    # buttons to keep state information on
+    a_button = constants.button_state["button up"]
+    b_button = constants.button_state["button up"]
+    start_button = constants.button_state["button up"]
+    select_button = constants.button_state["button up"]
+
+    # Gets the Shooting Sound ready for use
+    bird_sound = open("bird_chirp", "rb")
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
 
     # The display that will show up and refreshing it with 60 hertz
     game = stage.Stage(ugame.display, constants.FPS)
-    game.layers = [bird] + [background]
+    game.layers = [bird] + [cloud] + [background]
     game.render_block()
 
     while True:
+
         # get user input i.e buttons click
         keys = ugame.buttons.get_pressed()
-        if keys & ugame.K_X:
-            pass
-        if keys & ugame.K_O:
-            pass
-        if keys & ugame.K_START:
-            pass
-        if keys & ugame.K_SELECT:
-            pass
+
+        # A button to fire
+        if keys & ugame.K_O != 0:
+            # Changing the state of the A button
+            if a_button == constants.button_state["button_up"]:
+                a_button == constants.button_state["button_just_pressed"]
+            elif a_button == constants.button_state["button_just_pressed"]:
+                a_button == constants.button_state["button_still_pressed"]
+        else:
+            if a_button == constants.button_state["button_still_pressed"]:
+                a_button == constants.button_state["button_released"]
+            else:
+                a_button == constants.button_state["button_up"]
+
+                # Doing nothing with the B button
+            if keys & ugame.K_X:
+                pass
+            if keys & ugame.K_O:
+                pass
+            if keys & ugame.K_START:
+                pass
+            if keys & ugame.K_SELECT:
+                pass
 
         if keys & ugame.K_RIGHT:
             # moves the sprite to the right
@@ -71,10 +106,12 @@ def game_scene():
             else:
                 bird.move(bird.x, constants.SCREEN_Y - constants.SPRITE_SIZE)
 
-        # Update game Logic
-
+            # Update game Logic
+            # Plays the shooting sound when A is pressed
+            if a_button == constants.button_state["button_just_pressed"]:
+                sound.play(bird_sound)
         # redraw Bird
-        game.render_sprites([bird])
+        game.render_sprites([bird] + [cloud])
         game.tick()
 
         pass
