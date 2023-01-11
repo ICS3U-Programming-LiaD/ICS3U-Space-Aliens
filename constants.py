@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 #!/usr/bin/env python3
 # Created by: Lia Duggan
@@ -18,9 +19,13 @@ SPRITE_MOVEMENT_SPEED = 1
 
 # States of the Button
 button_state = {
-    "button up": "up",
-    # Only state where we want sound to happen
+    "button_up": "up",
     "button_just_pressed": "just pressed",
-    "button_still_pressed": "still_pressed",
-    "button_released": "released",
+    "button_still_pressed": "still pressed",
+    "button_released": "released"
 }
+
+# New palette for filled Text
+Red_PALETTE = (b'\xff\xff\x00\x22\xcey\x22\xff\xff\xff\xff\xff\xff\xff\xff\xff'
+
+b'\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff')
