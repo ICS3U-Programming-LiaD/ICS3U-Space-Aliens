@@ -15,21 +15,27 @@ def menu_scene():
     # imported an image and put it into a variable
     image_bank_background = stage.Bank.from_bmp16("space_aliens_background.bmp")
 
-# The Text Objects
+    # The Text Objects
     text = []
-    text1 = stage.Text(width=29, height=12, font=None, palette=constants.Red_PALETTE, buffer=None)
+    text1 = stage.Text(
+        width=29, height=12, font=None, palette=constants.Red_PALETTE, buffer=None
+    )
     text1.move(20, 10)
     text1.text("Lia's game")
     text.append(text1)
-    
-    text2 =stage.Text(width=29, height=12, font=None, palette=constants.Red_PALETTE, buffer=None)
-    text2.move (40, 110)
+
+    text2 = stage.Text(
+        width=29, height=12, font=None, palette=constants.Red_PALETTE, buffer=None
+    )
+    text2.move(40, 110)
     text2.text("Press Start to Play")
     text.append(text2)
 
     # grid of an image background
-    background = stage.Grid(image_bank_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
-    
+    background = stage.Grid(
+        image_bank_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y
+    )
+
     background = stage.Grid(image_bank_background, 10, 8)
 
     # The display that will show up and refreshing it with 60 hertz
@@ -43,7 +49,7 @@ def menu_scene():
         keys = ugame.buttons.get_pressed()
 
         if keys & ugame.K_START != 0:
-           game_scene()
+            game_scene()
 
         game.tick()
 
@@ -59,11 +65,13 @@ if __name__ == "__main__":
         image_bank_sprites = stage.Bank.from_bmp16("space_aliens.bmp")
 
         # grid of an image background
-        background = stage.Grid(image_bank_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+        background = stage.Grid(
+            image_bank_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y
+        )
 
         # Adding in the Sprites
         bird = stage.Sprite(image_bank_sprites, 4, 75, 66)
-        
+
         cloud = stage.Sprite(
             image_bank_sprites,
             9,
@@ -83,7 +91,7 @@ if __name__ == "__main__":
         sound = ugame.audio
         sound.stop()
         sound.mute(False)
-        
+
         background = stage.Grid(image_bank_background, 10, 8)
 
         # The display that will show up and refreshing it with 60 hertz
@@ -101,11 +109,10 @@ if __name__ == "__main__":
                 # Changing the state of the A button
                 if a_button == constants.button_state["button_up"]:
                     a_button = constants.button_state["button_just_pressed"]
-                    
 
                 elif a_button == constants.button_state["button_just_pressed"]:
                     a_button = constants.button_state["button_still_pressed"]
-                
+
             else:
                 if a_button == constants.button_state["button_still_pressed"]:
                     a_button = constants.button_state["button_released"]
