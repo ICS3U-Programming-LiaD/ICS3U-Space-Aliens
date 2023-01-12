@@ -9,6 +9,7 @@ import constants
 import stage
 import ugame
 
+
 def menu_scene():
 
     # imported an image and put it into a variable
@@ -52,8 +53,6 @@ def menu_scene():
 
         game.tick()
 
-        pass
-
 
 def game_scene():
 
@@ -84,7 +83,6 @@ def game_scene():
 
     # Gets the Shooting Sound ready for use
     bird_sound = open("pew2.wav", "rb")
-
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
@@ -101,28 +99,25 @@ def game_scene():
         # get user input i.e buttons click
         keys = ugame.buttons.get_pressed()
 
-                # Doing nothing with the B button
+        # Doing nothing with the B button
         if keys & ugame.K_X != 0:
-            pass
-                # A button to fire
-        if keys & ugame.K_O != 0:
             # Changing the state of the A button
             if a_button == constants.button_state["button_up"]:
                 a_button = constants.button_state["button_just_pressed"]
-
             elif a_button == constants.button_state["button_just_pressed"]:
                 a_button = constants.button_state["button_still_pressed"]
-
         else:
             if a_button == constants.button_state["button_still_pressed"]:
                 a_button = constants.button_state["button_released"]
             else:
-                a_button == constants.button_state["button_up"]
+                a_button = constants.button_state["button_up"]
+                # A button to fire
+        if keys & ugame.K_O != 0:
+            pass
         if keys & ugame.K_START != 0:
             print("Start")
         if keys & ugame.K_SELECT != 0:
             print("Select")
-
         if keys & ugame.K_RIGHT:
             # moves the sprite to the right
             if bird.x <= constants.SCREEN_X - 16:
@@ -164,6 +159,7 @@ def game_scene():
         game.tick()
 
         pass
+
 
 if __name__ == "__main__":
     game_scene()
