@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 #!/usr/bin/env python3
 # Created by: Lia Duggan
@@ -27,7 +28,7 @@ def splash_scene():
     background = stage.Grid(
         image_bank_mt_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y
     )
-    background.tile(2, 2, 0)  # blank white
+    background.tile(2, 2, 1)  # blank white
 
     background.tile(3, 2, 1)
 
@@ -37,9 +38,9 @@ def splash_scene():
 
     background.tile(6, 2, 4)
 
-    background.tile(7, 2, 0)  # blank white
+    background.tile(7, 2, 1)  # blank white
 
-    background.tile(2, 3, 0)  # blank white
+    background.tile(2, 3, 1)  # blank white
 
     background.tile(3, 3, 5)
 
@@ -49,9 +50,9 @@ def splash_scene():
 
     background.tile(6, 3, 8)
 
-    background.tile(7, 3, 0)  # blank white
+    background.tile(7, 3, 1)  # blank white
 
-    background.tile(2, 4, 0)  # blank white
+    background.tile(2, 4, 1)  # blank white
 
     background.tile(3, 4, 9)
 
@@ -61,9 +62,9 @@ def splash_scene():
 
     background.tile(6, 4, 12)
 
-    background.tile(7, 4, 0)  # blank white
+    background.tile(7, 4, 1)  # blank white
 
-    background.tile(2, 5, 0)  # blank white
+    background.tile(2, 5, 1)  # blank white
 
     background.tile(3, 5, 0)
 
@@ -73,7 +74,7 @@ def splash_scene():
 
     background.tile(6, 5, 0)
 
-    background.tile(7, 5, 0)  # blank white
+    background.tile(7, 5, 1)  # blank white
 
     # The display that will show up and refreshing it with 60 hertz
     game = stage.Stage(ugame.display, constants.FPS)
@@ -157,7 +158,7 @@ def game_scene():
     select_button = constants.button_state["button_up"]
 
     # Gets the Shooting Sound ready for use
-    bird_sound = open("pew2.wav", "rb")
+    bird_sound = open("pew2.wav", 'rb')
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
