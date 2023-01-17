@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 #!/usr/bin/env python3
 # Created by: Lia Duggan
@@ -158,7 +157,7 @@ def game_scene():
     select_button = constants.button_state["button_up"]
 
     # Gets the Shooting Sound ready for use
-    bird_sound = open("pew2.wav", 'rb')
+    bird_sound = open("pew2.wav", "rb")
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
